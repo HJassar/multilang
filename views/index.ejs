@@ -1,0 +1,24 @@
+<%- include('./includes/start') %>
+</head>
+
+<body>
+  <%- include('./includes/header') %>
+  <main>
+    <h2>page title: All articles</h2>
+    <ul>
+      <% articles.forEach(art =>{
+        art.translations.forEach(t=>{
+       if(t.language === lang){ %>
+      <li>
+        <a href="/<%=art._id%>"> <%=t.title %>
+        </a>
+      </li>
+      <% } // end of if
+      }) // end of translations.forEach
+      })%>
+    </ul>
+
+
+  </main>
+
+  <%- include('./includes/end') %>
