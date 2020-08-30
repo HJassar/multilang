@@ -3,8 +3,8 @@
   <body>
     <%- include('./includes/header') %> 
     <main>
-      <h2>page title: <%= title %> </h2>
-      by 
+      <h2><%=template.pageTitle%>: <%= title %> </h2>
+      <%= template.by %> 
       <%= version.author %> 
       
       <p>

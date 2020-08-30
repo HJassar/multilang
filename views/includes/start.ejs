@@ -1,9 +1,12 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= siteTitle %>
+    <title><%= template.siteName %>
     <% if(title!=''){ %>
         | <%=title%>
     <%} %>
     </title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
+    <% if(['ar'].some(l=>l===lang)){%>
+      <link rel="stylesheet" href="/stylesheets/rtl.css">
+     <%}%>

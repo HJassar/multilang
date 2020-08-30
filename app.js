@@ -3,11 +3,18 @@ const express = require('express');
 const path = require('path');
 const mongoose = require('mongoose')
 const session = require('express-session');
+const fs = require('fs');
 
 const indexRouter = require('./routes/index');
 
 const app = express();
 
+
+
+
+// grabTemplate(result=>{
+//   console.log(result)
+// })
 
 // Session
 app.use(session({
@@ -18,14 +25,14 @@ app.use(session({
 
 const db = 'mongodb://localhost:27017/multilangtut'
 // Connect DB
-mongoose.connect(db,{
+mongoose.connect(db, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   useFindAndModify: false,
   useCreateIndex: true
-}).then(()=>{
-  console.log('connected to: '+db)
-}).catch((err)=>{
+}).then(() => {
+  console.log('connected to: ' + db)
+}).catch((err) => {
   console.log(err.message);
 })
 
@@ -39,21 +46,21 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 
 // Global variables and sessions
-app.use((req,res,next)=>{
+app.use((req, res, next) => {
   app.locals.siteTitle = 'THE BLOG!';
-  req.session.lang = (req.query.lang)? req.query.lang:req.session.lang; 
+  req.session.lang = (req.query.lang) ? req.query.lang : req.session.lang;
   next();
 })
 
 app.use('/', indexRouter);
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   next(createError(404));
 });
 
 // error handler
-app.use(function(err, req, res, next) {
+app.use(function (err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};

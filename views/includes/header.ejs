@@ -1,10 +1,9 @@
 <header>
-    <h1>Site title: <%= siteTitle %></h1>
+    <h1><%= template.siteTitle %>: <%= template.siteName %></h1>
     <nav>
-      <a href="/">Home Page</a>
-      (<a href="?lang=en">En</a> | 
-      <a href="?lang=ar">Ar</a> |
-      <a href="?lang=es">Es</a> 
+      <a href="/"><%= template.homepage %></a>
+      ( <a href="?lang=en">En</a> |  
+       <a href="?lang=ar">Ar</a> 
       )
     </nav>
   </header>
